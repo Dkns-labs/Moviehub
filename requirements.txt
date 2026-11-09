@@ -1,0 +1,13 @@
+pyrogram
+tgcrypto
+motor
+pymongo
+aiohttp
+requests
+beautifulsoup4
+python-dotenv
+fastapi
+uvicorn
+# libtorrent comes from apt (python3-libtorrent, see Dockerfile) or: pip install libtorrent
+# It is optional: without it the aria2c client is used (apt install aria2).
+Pillow
