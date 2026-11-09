@@ -1,0 +1,13 @@
+services:
+  uploader:
+    build: .
+    image: autouploader
+    container_name: autouploader
+    restart: unless-stopped
+    env_file: .env            # copy .env.example to .env and fill it in
+    ports:
+      - "8080:8080"           # web links  (open TCP 8080 in your cloud firewall / security group)
+      - "6881:6881"           # torrent TCP
+      - "6881:6881/udp"       # torrent UDP
+    volumes:
+      - ./data:/app/data
