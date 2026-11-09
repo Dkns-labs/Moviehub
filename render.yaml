@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: auto-uploader
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health        # Render health check
+    autoDeploy: true
+    envVars:
+      # Render injects PORT (the app listens on it) and RENDER_EXTERNAL_URL (used for links + keep-alive ping)
+      - key: KEEP_ALIVE_INTERVAL
+        value: "60"                 # self-ping every 60 seconds
+      - key: MONGO_URI
+        sync: false                 # paste in the Render dashboard
+      - key: AUTO_UPLOADER_BOT_TOKEN
+        sync: false
+      - key: FILE_STORE_BOT_TOKEN
+        sync: false
+      - key: FILE_STORE_BOT_USERNAME
+        sync: false
+      - key: TELEGRAM_API_ID
+        sync: false
+      - key: TELEGRAM_API_HASH
+        sync: false
+      - key: OWNER_ID
+        sync: false
+      - key: PUBLIC_CHANNEL_ID
+        sync: false
+      - key: STORAGE_CHANNEL_ID
+        sync: false
+      - key: LOG_CHANNEL_ID
+        sync: false
+      - key: WEB_SECRET_TOKEN
+        generateValue: true
+      - key: TORRENT_SEARCH_BOT_TOKEN   # optional: empty = /search is built into the File Store bot
+        sync: false
